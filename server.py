@@ -78,6 +78,7 @@ def purchasePlaces():
     # Update the counters
     controle_club[club['name']][competition['name']] += placesRequired
     competition['numberOfPlaces'] = int(competition['numberOfPlaces'])-placesRequired
+    club['points'] = int(club['points'])-placesRequired
     flash('Great-booking complete!')
     return render_template('welcome.html', club=club, competitions=competitions)
 

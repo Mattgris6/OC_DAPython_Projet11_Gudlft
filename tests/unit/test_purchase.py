@@ -36,12 +36,13 @@ class TestPurchase:
         competition["numberOfPlaces"] = 25
         response = client.post(
             "/purchasePlaces",
-            data={'places':4, 'club':club["name"], 'competition':competition["name"]},
+            data={'places':3, 'club':club["name"], 'competition':competition["name"]},
             follow_redirects=True
             )
         assert response.status_code == 200
         data = response.data.decode()
         assert data.find("Great-booking complete!") != -1
+        assert club["points"] == 1
 
     def test_purchase_more_than_max_places_in_one_time(self, client, club, competition):
         club["points"] = 20

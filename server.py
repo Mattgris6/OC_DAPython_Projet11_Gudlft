@@ -65,6 +65,10 @@ def purchasePlaces():
     if competition['date'] < current_date:
         flash('This competition is in the past!')
         return render_template('welcome.html', club=club, competitions=competitions)
+    # Check place available
+    if int(competition['numberOfPlaces'])-placesRequired < 0:
+        flash(f'There is not enough available places.')
+        return render_template('booking.html',club=club,competition=competition)
     # Checks if club has enough points
     if placesRequired > int(club["points"]):
         flash(f'You do not have enough points.')

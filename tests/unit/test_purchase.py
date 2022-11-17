@@ -87,3 +87,15 @@ class TestPurchase:
         assert response.status_code == 200
         data = response.data.decode()
         assert data.find("This competition is in the past") != -1
+
+    def test_purchase_more_places_than_available_in_the_competition(self, client, club, competition):
+        club["points"] = 4
+        competition["numberOfPlaces"] = 2
+        response = client.post(
+            "/purchasePlaces",
+            data={'places':4, 'club':club["name"], 'competition':competition["name"]},
+            follow_redirects=True
+            )
+        assert response.status_code == 200
+        data = response.data.decode()
+        assert data.find("There is not enough available places") != -1

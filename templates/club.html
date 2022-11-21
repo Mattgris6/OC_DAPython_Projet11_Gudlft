@@ -1,0 +1,17 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club points</title>
+</head>
+
+<body>
+    <h3>Liste des clubs:</h3>
+    <ul>{%for c in clubs%}
+        <li>{{c['name']}} : {{c['points']}} points
+        </li>{% endfor %}</ul>
+    <INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);">
+</body>
+
+</html>

@@ -17,6 +17,7 @@
     {% for message in get_flashed_messages() %}
     <div class="alert-error">Error: {{ message }}</div>
     {% endfor %}
+    <a href="{{ url_for('club_resume') }}">Clubs resume</a>
 </body>
 
 </html>
